@@ -10,7 +10,7 @@ import Message from './Message';
 import '../styles/_messages.scss';
 import initialBottyMsg from '../../../common/constants/initialBottyMessage';
 
-const client = 'me';
+const ME = 'me';
 const botty = 'botty';
 
 const socket = io(
@@ -66,7 +66,9 @@ function Messages() {
        return false; 
       }
 
-    setMessages([...messages, {message, user: client}]);
+    setMessages([...messages, {message, user: ME}]);
+
+    playSend();
 
     socket.emit('user-message', message);
 
@@ -74,7 +76,7 @@ function Messages() {
 
     setMessage('');
 
-    playSend();
+    
 
     document.querySelector("#user-message-input").value = '';
   }, [messages, message]);
